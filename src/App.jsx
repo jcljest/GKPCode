@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";  
 import {
 	Home,
 	User,
@@ -261,12 +262,12 @@ const HeroSection = () => (
 				DISCLAIMER: Your code will be terrible. Attend Part 2 to learn about
 				proper software architecture and best practices.
 			</p>
-			<a
-				href="#projects"
-				className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105 animate-fadeInUp delay-600">
-				Start Building
-				<Code className="w-4 h-4 ml-2" />
-			</a>
+			<Link
+  to="/howto"
+  className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105 animate-fadeInUp delay-600"
+>
+  How to Build a Website
+</Link>
 		</div>
 	</section>
 );

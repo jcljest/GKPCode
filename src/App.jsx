@@ -145,8 +145,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode, activeSection }) => {
 	const navItems = [
 		{ id: "home", name: "Home", icon: Home, href: "#home" },
 		{ id: "about", name: "About", icon: User, href: "#about" },
-		{ id: "projects", name: "Projects", icon: Code, href: "#projects" },
-		{ id: "contact", name: "Contact", icon: Mail, href: "#contact" },
+		
 	];
 
 	return (
@@ -273,7 +272,17 @@ const HeroSection = () => (
 );
 
 const AboutSection = () => (
-	<section id="about" className="py-20 bg-gray-50 dark:bg-gray-900 px-4">
+	<section id="about" 
+	 className="flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-12 py-16 bg-gray-50 dark:bg-gray-900">
+		  {/* --- Left: Image --- */}
+  <div className="flex-shrink-0">
+    <img
+  src="/your-photo.jpg"
+  alt="Jeff Lai portrait"
+  className="w-64 h-auto rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 object-contain bg-gray-100"
+/>
+  </div>
+		
 		<div className="max-w-7xl mx-auto">
 			<h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
 				About Me
@@ -282,37 +291,26 @@ const AboutSection = () => (
 				<div className="lg:col-span-2 space-y-6 text-lg text-gray-700 dark:text-gray-300">
 					<p>
 						My journey in web development began with a fascination for
-						interactive applications. Over the years, I've cultivated a deep
-						expertise in the **React ecosystem** for building robust,
-						single-page applications. My focus is always on delivering
-						high-performance, accessible, and maintainable codebases.
-					</p>
-					<p>
-						Beyond the frontend, I excel in backend development using
-						**Node.js** and **Express**, with proficiency in both SQL
-						(PostgreSQL) and NoSQL (Firestore, MongoDB) databases. I thrive in
-						environments that prioritize continuous integration and deployment,
-						and I'm always eager to adopt the latest technologies to solve
-						complex problems.
+						how LLM models can help us create digital products for specific purposes.
+						Over the years, explored a better understanding of contemporary
+						front-end development frameworks and libraries 
+						**React ecosystem** for building robust,
+						single-page applications. My focus is helping you start that journey.
 					</p>
 					<p className="font-semibold text-indigo-600 dark:text-indigo-400">
 						Let's connect and build something impactful together.
 					</p>
 				</div>
 				<div className="lg:col-span-1 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-					<h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+					<h3 className="text-2xl font-semibold flex justify-center text-gray-900 dark:text-white mb-4">
 						Core Skills
 					</h3>
-					<div className="flex flex-wrap gap-3">
+					<div className="flex flex-wrap justify-center gap-3">
 						{[
 							"React.js",
 							"Tailwind CSS",
 							"Node.js",
-							"TypeScript",
-							"Firestore",
-							"Next.js",
-							"Redux",
-							"Docker",
+
 						].map((skill) => (
 							<span
 								key={skill}
@@ -499,7 +497,7 @@ const Footer = ({ userId }) => (
 		<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 			<div className="flex justify-center space-x-6 mb-4">
 				<a
-					href="https://github.com/placeholder"
+					href="https://github.com/jcljest"
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="GitHub"
@@ -507,7 +505,7 @@ const Footer = ({ userId }) => (
 					<Github className="w-6 h-6" />
 				</a>
 				<a
-					href="https://linkedin.com/in/placeholder"
+					href="https://www.linkedin.com/in/jeffrey-lai-88ab23372"
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="LinkedIn"
@@ -516,7 +514,7 @@ const Footer = ({ userId }) => (
 				</a>
 			</div>
 			<p className="text-sm text-gray-500 dark:text-gray-400">
-				&copy; {new Date().getFullYear()} [Your Name]. All rights reserved.
+				&copy; {new Date().getFullYear()} Jeffrey Lai All rights reserved.
 			</p>
 			{userId && (
 				<p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
@@ -580,7 +578,7 @@ const App = () => {
 		}, observerOptions);
 
 		// Target all sections
-		["home", "about", "projects", "contact"].forEach((id) => {
+		["home", "about"].forEach((id) => {
 			const element = document.getElementById(id);
 			if (element) {
 				observer.observe(element);
@@ -605,8 +603,6 @@ const App = () => {
 					{/* Sections */}
 					<HeroSection />
 					<AboutSection />
-					<ProjectsSection />
-					<ContactSection />
 				</main>
 
 				<Footer userId={userId} />

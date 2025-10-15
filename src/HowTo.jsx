@@ -72,18 +72,23 @@ export default function HowTo() {
   const steps = [
     {
       user: <>How do I confirm Node & npm on a Mac and scaffold a Vite + React (JS only) project?</>,
-      assistant: <>You’ll verify versions, then generate a JSX-only Vite template and run it to confirm dev server works.</>,
+      assistant: <>First install Visual Studio Code. Then we will verify versions, then generate a JSX-only Vite template and run it to confirm dev server works.</>,
       details: [
         {
           title: "Commands (verify + scaffold + run)",
           content: (
             <pre className="text-xs overflow-auto">
-{`node -v
+{`
+All Command Lines on VS code need to be separate, use ^ + ~ on keyboard to activate terminal
+node -v
 npm -v
 
-# Create project in current folder (or replace my-app)
-npm create vite@latest my-app -- --template react
-cd my-app
+# Create project in current folder
+npm create vite@latest 
+
+This part is a big confusing, watch on the board.
+
+cd [name of your folder]
 npm install
 npm run dev  # open shown localhost URL`}
             </pre>
@@ -99,20 +104,10 @@ npm run dev  # open shown localhost URL`}
           title: "Commands & config (Tailwind)",
           content: (
             <pre className="text-xs overflow-auto">
-{`npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+{`npm install tailwindcss @tailwindcss/vite
 
-# tailwind.config.js
-export default {
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
-  theme: { extend: {} },
-  plugins: [],
-}
-
-# src/index.css (ensure you import this in main.jsx)
-@tailwind base;
-@tailwind components;
-@tailwind utilities;`}
+Then follow these instructions
+https://tailwindcss.com/docs/installation/using-vite`}
             </pre>
           )
         }

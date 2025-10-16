@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import HowTo from "./pages/HowTo.jsx";
 import Venv from "./pages/Venv.jsx";
 import GitHubNotes from "./pages/GitHubNotes.jsx";
+import LocalEnvPage from "./pages/LocalEnvPage.jsx";
 import "./index.css";
 
 function RootLayout() {
@@ -37,6 +38,7 @@ function RootLayout() {
 			type: "route",
 			to: "/github-notes",
 		},
+		 { id: "local-env", label: "Local Env", type: "route", to: "/local-env" },
 	];
 
 	return (
@@ -62,6 +64,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					<Route path="howto" element={<HowTo />} />
 					<Route path="venv" element={<Venv />} />
 					<Route path="github-notes" element={<GitHubNotes />} />
+					<Route path="Local-Env" element={<LocalEnvPage />} />
+
 				</Route>
 			</Routes>
 		</BrowserRouter>

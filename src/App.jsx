@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-	Github,
-	Linkedin,
-	Send,
-	CheckCircle,
-	XCircle,
-} from "lucide-react";
+import { Github, Linkedin, Send, CheckCircle, XCircle } from "lucide-react";
 import { initializeApp } from "firebase/app";
 import {
 	getAuth,
@@ -38,8 +32,6 @@ if (typeof __firebase_config !== "undefined") {
 }
 const initialAuthToken =
 	typeof __initial_auth_token !== "undefined" ? __initial_auth_token : null;
-
-
 
 // --- FIREBASE INITIALIZATION & HANDLERS ---
 
@@ -126,27 +118,27 @@ const HeroSection = () => (
 				proper software architecture and best practices.
 			</p>
 			<Link
-  to="/howto"
-  className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105 animate-fadeInUp delay-600"
->
-  How to Build a Website
-</Link>
+				to="/howto"
+				className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-105 animate-fadeInUp delay-600">
+				How to Build a Website
+			</Link>
 		</div>
 	</section>
 );
 
 const AboutSection = () => (
-	<section id="about" 
-	 className="flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-12 py-16 bg-gray-50 dark:bg-gray-900">
-		  {/* --- Left: Image --- */}
-  <div className="flex-shrink-0">
-    <img
-  src="/your-photo.jpg"
-  alt="Jeff Lai portrait"
-  className="w-64 h-auto rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 object-contain bg-gray-100"
-/>
-  </div>
-		
+	<section
+		id="about"
+		className="flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-12 py-16 bg-gray-50 dark:bg-gray-900">
+		{/* --- Left: Image --- */}
+		<div className="flex-shrink-0">
+			<img
+				src="/your-photo.jpg"
+				alt="Jeff Lai portrait"
+				className="w-64 h-auto rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 object-contain bg-gray-100"
+			/>
+		</div>
+
 		<div className="max-w-7xl mx-auto">
 			<h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
 				About Me
@@ -154,12 +146,12 @@ const AboutSection = () => (
 			<div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 				<div className="lg:col-span-2 space-y-6 text-lg text-gray-700 dark:text-gray-300">
 					<p>
-						My journey in web development began with a fascination for
-						how LLM models can help us create digital products for specific purposes.
+						My journey in web development began with a fascination for how LLM
+						models can help us create digital products for specific purposes.
 						Over the years, explored a better understanding of contemporary
-						front-end development frameworks and libraries 
-						**React ecosystem** for building robust,
-						single-page applications. My focus is helping you start that journey.
+						front-end development frameworks and libraries **React ecosystem**
+						for building robust, single-page applications. My focus is helping
+						you start that journey.
 					</p>
 					<p className="font-semibold text-indigo-600 dark:text-indigo-400">
 						Let's connect and build something impactful together.
@@ -170,12 +162,7 @@ const AboutSection = () => (
 						Core Skills
 					</h3>
 					<div className="flex flex-wrap justify-center gap-3">
-						{[
-							"React.js",
-							"Tailwind CSS",
-							"Node.js",
-
-						].map((skill) => (
+						{["React.js", "Tailwind CSS", "Node.js"].map((skill) => (
 							<span
 								key={skill}
 								className="px-4 py-1 text-sm font-medium bg-indigo-50 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 rounded-full border border-indigo-200 dark:border-indigo-700 transition transform hover:scale-105">
@@ -188,7 +175,6 @@ const AboutSection = () => (
 		</div>
 	</section>
 );
-
 
 const ContactSection = () => {
 	const { db, isAuthReady } = React.useContext(FirebaseContext);
@@ -387,8 +373,6 @@ const App = () => {
 					{/* Sections */}
 					<HeroSection />
 					<AboutSection />
-					<ProjectsSection />
-					<ContactSection />
 				</main>
 
 				<Footer userId={userId} />

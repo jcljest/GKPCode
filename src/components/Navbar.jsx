@@ -43,8 +43,10 @@ export default function Navbar({
 	return (
 		<header className="fixed inset-x-0 top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-200 dark:bg-gray-950/80 dark:border-gray-800">
 			<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-				<Link to="/" className="text-lg font-semibold text-gray-900 dark:text-white">
-					AIAI
+				<Link
+					to="/"
+					className="text-lg font-semibold text-gray-900 dark:text-white">
+					Lai Education
 				</Link>
 				<nav className="flex items-center gap-3">
 					{items.map((item) => {
@@ -62,7 +64,10 @@ export default function Navbar({
 						}
 
 						return (
-							<Link key={item.id} to={item.to} className={getItemClasses(active)}>
+							<Link
+								key={item.id}
+								to={item.to}
+								className={getItemClasses(active)}>
 								{item.label}
 							</Link>
 						);

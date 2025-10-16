@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";  
+import { Link } from "react-router-dom";
 import {
-	Home,
-	User,
-	Code,
-	Mail,
 	Github,
 	Linkedin,
-	Sun,
-	Moon,
-	ExternalLink,
 	Send,
-	ArrowUpRight,
 	CheckCircle,
 	XCircle,
 } from "lucide-react";
@@ -33,50 +25,21 @@ import "./index.css";
 
 // 1. Firebase Environment Variables (MANDATORY USE)
 const appId = typeof __app_id !== "undefined" ? __app_id : "default-app-id";
-const firebaseConfig =
-	typeof __firebase_config !== "undefined" ? JSON.parse(__firebase_config) : {};
+let firebaseConfig = {};
+if (typeof __firebase_config !== "undefined") {
+	try {
+		firebaseConfig =
+			typeof __firebase_config === "string"
+				? JSON.parse(__firebase_config)
+				: __firebase_config || {};
+	} catch (error) {
+		console.error("Failed to parse __firebase_config:", error);
+	}
+}
 const initialAuthToken =
 	typeof __initial_auth_token !== "undefined" ? __initial_auth_token : null;
 
-// 2. Mock Project Data
-const PROJECTS = [
-	{
-		id: 1,
-		title: "E-Commerce Platform Redesign",
-		description:
-			"A complete overhaul of an existing e-commerce platform focusing on mobile-first experience and performance optimization. Technologies: React, Redux, Tailwind CSS.",
-		tech: ["React", "Tailwind", "Redux"],
-		demoUrl: "#",
-		repoUrl: "https://github.com/placeholder/ecommerce",
-	},
-	{
-		id: 2,
-		title: "AI-Powered Content Generator",
-		description:
-			"A web service utilizing the Gemini API to generate structured content from user prompts. Features token-based usage tracking. Technologies: Next.js, Gemini API, Firestore.",
-		tech: ["Next.js", "Gemini API", "Firestore"],
-		demoUrl: "#",
-		repoUrl: "https://github.com/placeholder/ai-generator",
-	},
-	{
-		id: 3,
-		title: "Real-Time Chat Application",
-		description:
-			"A secure, real-time messaging application with private and group chat functionality. Technologies: Node.js, Socket.io, MongoDB.",
-		tech: ["Node.js", "Socket.io", "MongoDB"],
-		demoUrl: "#",
-		repoUrl: "https://github.com/placeholder/chat-app",
-	},
-	{
-		id: 4,
-		title: "Data Visualization Dashboard",
-		description:
-			"An interactive dashboard for complex data analysis built using D3.js and TypeScript. Focus on accessibility and dynamic filtering.",
-		tech: ["D3.js", "TypeScript", "Vite"],
-		demoUrl: "#",
-		repoUrl: "https://github.com/placeholder/data-viz",
-	},
-];
+
 
 // --- FIREBASE INITIALIZATION & HANDLERS ---
 
@@ -137,105 +100,6 @@ const useFirebase = () => {
 
 	return { db, auth, isAuthReady, userId };
 };
-
-// --- COMPONENTS ---
-
-// 1. Dark Mode/Navbar Component
-const Navbar = ({ isDarkMode, toggleDarkMode, activeSection }) => {
-	const navItems = [
-		{ id: "home", name: "Home", icon: Home, href: "#home" },
-		{ id: "about", name: "About", icon: User, href: "#about" },
-		
-	];
-
-	return (
-		<header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 shadow-md transition-colors duration-500">
-			<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-				<a
-					href="#home"
-					className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition">
-					GKP Coding
-				</a>
-				<div className="flex items-center space-x-4">
-					<div className="hidden md:flex space-x-6">
-						{navItems.map((item) => (
-							<a
-								key={item.id}
-								href={item.href}
-								className={`
-                                    text-sm font-medium transition-colors duration-300 relative group
-                                    ${
-																			activeSection === item.id
-																				? "text-indigo-600 dark:text-indigo-400"
-																				: "text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
-																		}
-                                `}>
-								{item.name}
-								<span
-									className={`absolute bottom-0 left-0 h-0.5 w-full bg-indigo-600 dark:bg-indigo-400 
-                                    transform scale-x-0 ${
-																			activeSection === item.id
-																				? "scale-x-100"
-																				: "group-hover:scale-x-100"
-																		} 
-                                    transition-transform duration-300 ease-out`}></span>
-							</a>
-						))}
-					</div>
-					<button
-						onClick={toggleDarkMode}
-						aria-label="Toggle Dark Mode"
-						className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300">
-						{isDarkMode ? (
-							<Sun className="w-5 h-5" />
-						) : (
-							<Moon className="w-5 h-5" />
-						)}
-					</button>
-				</div>
-			</nav>
-		</header>
-	);
-};
-
-// 2. Project Card Component
-const ProjectCard = ({ project }) => (
-	<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700/50 group">
-		<div className="p-6">
-			<h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-				{project.title}
-			</h3>
-			<p className="text-sm text-gray-600 dark:text-gray-400 mb-4 h-12 overflow-hidden">
-				{project.description}
-			</p>
-			<div className="flex flex-wrap gap-2 mb-4">
-				{project.tech.map((tech, index) => (
-					<span
-						key={index}
-						className="px-3 py-1 text-xs font-semibold bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 rounded-full">
-						{tech}
-					</span>
-				))}
-			</div>
-			<div className="flex space-x-4">
-				<a
-					href={project.demoUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 transition">
-					Demo <ArrowUpRight className="w-4 h-4 ml-1" />
-				</a>
-				<a
-					href={project.repoUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
-					Repo <Github className="w-4 h-4 ml-1" />
-				</a>
-			</div>
-		</div>
-	</div>
-);
 
 // 3. Section Components
 const HeroSection = () => (
@@ -325,20 +189,6 @@ const AboutSection = () => (
 	</section>
 );
 
-const ProjectsSection = () => (
-	<section id="projects" className="py-20 px-4">
-		<div className="max-w-7xl mx-auto">
-			<h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">
-				Featured Projects
-			</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{PROJECTS.map((project) => (
-					<ProjectCard key={project.id} project={project} />
-				))}
-			</div>
-		</div>
-	</section>
-);
 
 const ContactSection = () => {
 	const { db, isAuthReady } = React.useContext(FirebaseContext);
@@ -527,82 +377,18 @@ const Footer = ({ userId }) => (
 
 // 4. Main App Component
 const App = () => {
-	// State for dark mode
-	const [isDarkMode, setIsDarkMode] = useState(() => {
-		// Initialize dark mode from localStorage or system preference
-		if (typeof window !== "undefined" && localStorage.getItem("theme")) {
-			return localStorage.getItem("theme") === "dark";
-		}
-		return false;
-	});
-
-	// State for active section tracking (for Navbar highlighting)
-	const [activeSection, setActiveSection] = useState("home");
-
 	// Initialize Firebase and get context values
 	const { db, auth, isAuthReady, userId } = useFirebase();
-
-	// Toggle dark mode logic
-	const toggleDarkMode = () => {
-		setIsDarkMode((prev) => {
-			const newMode = !prev;
-			localStorage.setItem("theme", newMode ? "dark" : "light");
-			return newMode;
-		});
-	};
-
-	// Apply dark mode class to HTML element
-	useEffect(() => {
-		const html = document.documentElement;
-		if (isDarkMode) {
-			html.classList.add("dark");
-		} else {
-			html.classList.remove("dark");
-		}
-	}, [isDarkMode]);
-
-	// Intersection Observer for Navbar active state
-	useEffect(() => {
-		const observerOptions = {
-			root: null,
-			rootMargin: "0px",
-			threshold: 0.5, // 50% visibility
-		};
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					setActiveSection(entry.target.id);
-				}
-			});
-		}, observerOptions);
-
-		// Target all sections
-		["home", "about"].forEach((id) => {
-			const element = document.getElementById(id);
-			if (element) {
-				observer.observe(element);
-			}
-		});
-
-		// Cleanup
-		return () => observer.disconnect();
-	}, []);
 
 	return (
 		<FirebaseContext.Provider value={{ db, auth, isAuthReady, userId }}>
 			<div className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-500 scroll-smooth font-sans">
-				{/* Navbar is fixed */}
-				<Navbar
-					isDarkMode={isDarkMode}
-					toggleDarkMode={toggleDarkMode}
-					activeSection={activeSection}
-				/>
-
 				<main>
 					{/* Sections */}
 					<HeroSection />
 					<AboutSection />
+					<ProjectsSection />
+					<ContactSection />
 				</main>
 
 				<Footer userId={userId} />

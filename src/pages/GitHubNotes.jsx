@@ -31,6 +31,7 @@ export default function GitHubNotes() {
 		{ id: "workflow", label: "7. Healthy Beginner Workflow" },
 		{ id: "grow", label: "8. When You’re Ready to Grow" },
 		{ id: "purpose", label: "9. The Real Purpose" },
+		{ id: "branching-deep-dive", label: "10. Branching Deep Dive" },
 		{ id: "tips", label: "Pro Tip for Learners" },
 	];
 
@@ -240,6 +241,41 @@ git push -u origin experiment`}
 							helps you collaborate with clarity and build a visible record of
 							growth.
 						</p>
+					</section>
+
+					<section id="branching-deep-dive" className="space-y-3">
+					<h2 className="text-2xl font-bold">10. Branching Deep Dive — The Real Power of Git</h2>
+					<p>
+						Branches let you create independent timelines of work. Each branch is just a label
+						pointing to a commit — so you can test new ideas, fix bugs, or refactor without
+						touching main.
+					</p>
+
+					<ul className="list-disc pl-6 space-y-1">
+						<li><strong>Local vs Remote:</strong> Local branches live on your device; remote ones (like <code>origin/feature-x</code>) live on GitHub.</li>
+						<li><strong>Tracking Branch:</strong> A local branch that “follows” a remote one. It lets you simply type <code>git pull</code> or <code>git push</code> without extra arguments.</li>
+						<li><strong>Creating & Linking:</strong> <code>git switch -c feature-x origin/feature-x</code> or <code>git push -u origin feature-x</code> automatically sets up tracking.</li>
+						<li><strong>Fetching vs Pulling:</strong> <code>git fetch</code> updates remote info but doesn’t change files; <code>git pull</code> brings remote commits into your current branch.</li>
+						<li><strong>Merge vs Rebase:</strong> Merge preserves history with an extra commit; rebase rewrites your commits on top for a cleaner, linear timeline.</li>
+						<li><strong>Pruning:</strong> <code>git fetch --prune</code> removes deleted remote branches locally — keeping your list clean.</li>
+						<li><strong>Conflict Resolution:</strong> When Git can’t auto-merge, it marks conflicts with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> lines. Edit, remove markers, then <code>git add</code> and <code>git commit</code>.</li>
+						<li><strong>Discarding Local Work:</strong> <code>git reset --hard origin/branch</code> makes your branch identical to GitHub’s version (use carefully).</li>
+						<li><strong>Recovering Work:</strong> <code>git reflog</code> lists all recent states so you can restore lost commits.</li>
+					</ul>
+
+					<Callout icon={GitBranch} title="Command Summary">
+						<div className="font-mono text-sm space-y-1">
+						<div><code>git fetch --prune</code> → refresh and clean remote refs</div>
+						<div><code>git pull --rebase</code> → update your branch linearly</div>
+						<div><code>git push -u origin &lt;branch&gt;</code> → create + track remote branch</div>
+						<div><code>git reset --hard origin/&lt;branch&gt;</code> → discard local commits</div>
+						<div><code>git branch -vv</code> → show tracking info and sync status</div>
+						</div>
+					</Callout>
+
+					<Callout icon={Bot} title="Ask an LLM">
+						“What’s the difference between merging and rebasing in a visual timeline?”
+					</Callout>
 					</section>
 
 					<section id="tips" className="space-y-3">

@@ -38,6 +38,12 @@ function RootLayout() {
 			type: "route",
 			to: "/github-notes",
 		},
+				{
+			id: "UnityVR",
+			label: "Unity VR",
+			type: "route",
+			to: "/UnityVR",
+		},
 		 { id: "local-env", label: "Local Env", type: "route", to: "/local-env" },
 	];
 

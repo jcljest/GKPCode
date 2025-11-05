@@ -9,6 +9,7 @@ import Venv from "./pages/Venv.jsx";
 import GitHubNotes from "./pages/GitHubNotes.jsx";
 import LocalEnvPage from "./pages/LocalEnvPage.jsx";
 import "./index.css";
+import QuestLesson1 from "./pages/QuestLesson1.jsx";
 
 function RootLayout() {
 	const [isDarkMode, setIsDarkMode] = React.useState(() => {
@@ -30,21 +31,11 @@ function RootLayout() {
 
 	const navItems = [
 		{ id: "home", label: "Home", type: "route", to: "/" },
-		{ id: "howto", label: "How To", type: "route", to: "/howto" },
-		{ id: "venv", label: "Venv", type: "route", to: "/venv" },
-		{
-			id: "git-notes",
-			label: "GitHub Notes",
-			type: "route",
-			to: "/github-notes",
-		},
-				{
-			id: "UnityVR",
-			label: "Unity VR",
-			type: "route",
-			to: "/UnityVR",
-		},
-		 { id: "local-env", label: "Local Env", type: "route", to: "/local-env" },
+    { id: "howto", label: "How To", type: "route", to: "/howto" },
+    { id: "venv", label: "Venv", type: "route", to: "/venv" },
+    { id: "git-notes", label: "GitHub Notes", type: "route", to: "/github-notes" },
+    { id: "unity-vr", label: "Unity VR", type: "route", to: "/unity-vr" },   // ✅ match route below
+    { id: "local-env", label: "Local Env", type: "route", to: "/local-env" }, // ✅ normalized
 	];
 
 	return (
@@ -65,15 +56,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Routes>
-				<Route element={<RootLayout />}>
-					<Route index element={<App />} />
-					<Route path="howto" element={<HowTo />} />
-					<Route path="venv" element={<Venv />} />
-					<Route path="github-notes" element={<GitHubNotes />} />
-					<Route path="Local-Env" element={<LocalEnvPage />} />
-
-				</Route>
-			</Routes>
+  <Route element={<RootLayout />}>
+    <Route index element={<App />} />
+    <Route path="howto" element={<HowTo />} />
+    <Route path="venv" element={<Venv />} />
+    <Route path="github-notes" element={<GitHubNotes />} />
+    <Route path="local-env" element={<LocalEnvPage />} />        {/* ✅ fixed */}
+    <Route path="unity-vr" element={<QuestLesson1 />} />         {/* ✅ new page */}
+  </Route>
+</Routes>
 		</BrowserRouter>
 	</React.StrictMode>
 );

@@ -14,6 +14,7 @@ import {
 	serverTimestamp,
 } from "firebase/firestore";
 import "./index.css";
+import DynamicEulerNetwork from "./pages/DynamicEulerNetwork";
 
 // --- CONFIG & UTILITIES ---
 

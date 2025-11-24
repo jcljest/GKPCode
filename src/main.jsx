@@ -9,6 +9,7 @@ import Venv from "./pages/Venv.jsx";
 import GitHubNotes from "./pages/GitHubNotes.jsx";
 import LocalEnvPage from "./pages/LocalEnvPage.jsx";
 import "./index.css";
+import DynamicEulerNetwork from "./pages/DynamicEulerNetwork.jsx";
 
 function RootLayout() {
 	const [isDarkMode, setIsDarkMode] = React.useState(() => {
@@ -39,6 +40,7 @@ function RootLayout() {
 			to: "/github-notes",
 		},
 		 { id: "local-env", label: "Local Env", type: "route", to: "/local-env" },
+		 { id: "AI-Node", label: "AI Node", type: "route", to: "/ai-node" },
 	];
 
 	return (
@@ -65,6 +67,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					<Route path="venv" element={<Venv />} />
 					<Route path="github-notes" element={<GitHubNotes />} />
 					<Route path="Local-Env" element={<LocalEnvPage />} />
+					<Route path="ai-node" element={<DynamicEulerNetwork />} />
 
 				</Route>
 			</Routes>

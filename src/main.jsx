@@ -9,11 +9,9 @@ import Venv from "./pages/Venv.jsx";
 import GitHubNotes from "./pages/GitHubNotes.jsx";
 import LocalEnvPage from "./pages/LocalEnvPage.jsx";
 import "./index.css";
-<<<<<<< HEAD
+
 import DynamicEulerNetwork from "./pages/DynamicEulerNetwork.jsx";
-=======
-import QuestLesson1 from "./pages/QuestLesson1.jsx";
->>>>>>> c0cfd3eceeb4b79fb993c345b5bdb56edab89592
+
 
 function RootLayout() {
 	const [isDarkMode, setIsDarkMode] = React.useState(() => {
@@ -35,7 +33,7 @@ function RootLayout() {
 
 	const navItems = [
 		{ id: "home", label: "Home", type: "route", to: "/" },
-<<<<<<< HEAD
+
 		{ id: "howto", label: "How To", type: "route", to: "/howto" },
 		{ id: "venv", label: "Venv", type: "route", to: "/venv" },
 		{
@@ -46,13 +44,7 @@ function RootLayout() {
 		},
 		 { id: "local-env", label: "Local Env", type: "route", to: "/local-env" },
 		 { id: "AI-Node", label: "AI Node", type: "route", to: "/ai-node" },
-=======
-    { id: "howto", label: "How To", type: "route", to: "/howto" },
-    { id: "venv", label: "Venv", type: "route", to: "/venv" },
-    { id: "git-notes", label: "GitHub Notes", type: "route", to: "/github-notes" },
-    { id: "unity-vr", label: "Unity VR", type: "route", to: "/unity-vr" },   // ✅ match route below
-    { id: "local-env", label: "Local Env", type: "route", to: "/local-env" }, // ✅ normalized
->>>>>>> c0cfd3eceeb4b79fb993c345b5bdb56edab89592
+
 	];
 
 	return (
@@ -73,7 +65,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Routes>
-<<<<<<< HEAD
+
 				<Route element={<RootLayout />}>
 					<Route index element={<App />} />
 					<Route path="howto" element={<HowTo />} />
@@ -84,17 +76,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 				</Route>
 			</Routes>
-=======
-  <Route element={<RootLayout />}>
-    <Route index element={<App />} />
-    <Route path="howto" element={<HowTo />} />
-    <Route path="venv" element={<Venv />} />
-    <Route path="github-notes" element={<GitHubNotes />} />
-    <Route path="local-env" element={<LocalEnvPage />} />        {/* ✅ fixed */}
-    <Route path="unity-vr" element={<QuestLesson1 />} />         {/* ✅ new page */}
-  </Route>
-</Routes>
->>>>>>> c0cfd3eceeb4b79fb993c345b5bdb56edab89592
+
 		</BrowserRouter>
 	</React.StrictMode>
 );
